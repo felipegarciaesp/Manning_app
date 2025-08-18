@@ -19,14 +19,14 @@ def manning_eq(h):
     Pm = b + 2 * h      # perimetro mojado - canal rectangular (m)
     Rh = A / Pm         # radio hidráulico (m)
     f = ((np.sqrt(S)/n) * A * (Rh ** (2/3)) - Q) * 1000000    # funcion que debe ser igual a 0.
-    return float(f)
+    return float(f[0]) #Se extrae escalar para evitar warnings
 
 def h_critica(h):
     A = b * h           # area de escurrimiento - canal rectangular (m^2).
     V = Q / A           # velocidad de escurrimiento (m/s).
     T = b               # ancho superficial de escurrimiento - canal rectangular (m)
     f = ((V / np.sqrt(g * A / T)) - 1) * 1000000
-    return float(f)
+    return float(f[0]) #Se extrae escalar para evitar warnings
 
 
 # Valor inicial para la altura
