@@ -30,7 +30,7 @@ def h_critica(h):
 
 
 # Valor inicial para la altura
-h0 = 1.0
+h0 = b / 2              # valor inicial para canal rectangular
 
 # Resolver la ecuación
 altura_normal = fsolve(manning_eq, h0)[0]
