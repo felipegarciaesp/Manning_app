@@ -7,12 +7,6 @@ import numpy as np
 ## Definicion valores globales ##
 g = 9.81    # aceleracion de la gravedad (m/s^2)
 
-## Datos del problema ##
-b = 3.0      # ancho del canal rectangular (m)
-Q = 10.0     # caudal (m^3/s)
-S = 0.001    # pendiente del canal (m/m)
-n = 0.03     # coeficiente de Manning (adim.)
-
 ## Definicion de funciones ##
 def manning_eq(h):
     A = b * h           # area de escurrimiento - canal rectangular (m^2)
@@ -25,9 +19,21 @@ def h_critica(h):
     A = b * h           # area de escurrimiento - canal rectangular (m^2).
     V = Q / A           # velocidad de escurrimiento (m/s).
     T = b               # ancho superficial de escurrimiento - canal rectangular (m)
-    f = ((V / np.sqrt(g * A / T)) - 1) * 1000000
+    f = (froude(V, A, T) - 1) * 1000000
     return float(f[0]) #Se extrae escalar para evitar warnings
 
+def froude(V, A, T):                # funcion para calcular el numero de froude en una seccion.
+    # V: velocidad [m/s]
+    # A: área [m^2]
+    # T: tirante [m]
+    # g: aceleración de la gravedad [m/s^2]
+    return V / np.sqrt(g * A / T)
+
+## Datos del problema ##
+b = 3.0      # ancho del canal rectangular (m)
+Q = 10.0     # caudal (m^3/s)
+S = 0.001    # pendiente del canal (m/m)
+n = 0.03     # coeficiente de Manning (adim.)
 
 # Valor inicial para la altura
 h0 = b / 2              # valor inicial para canal rectangular
