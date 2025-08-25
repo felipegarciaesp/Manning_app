@@ -7,9 +7,17 @@ import numpy as np
 ## Definicion valores globales ##
 g = 9.81    # aceleracion de la gravedad (m/s^2)
 
+## Definicion de clases ##
+class CanalRectangular:
+    def area(self, b, h):
+        return b * h
+
+## Se instancian las clases ##
+area_esc = CanalRectangular()
+
 ## Definicion de funciones ##
 def manning_eq(h):
-    A = b * h           # area de escurrimiento - canal rectangular (m^2)
+    A = area_esc.area(b, h)           # area de escurrimiento - canal rectangular (m^2) (OOP)
     Pm = b + 2 * h      # perimetro mojado - canal rectangular (m)
     Rh = A / Pm         # radio hidráulico (m)
     f = ((np.sqrt(S)/n) * A * (Rh ** (2/3)) - Q) * 1000000    # funcion que debe ser igual a 0.
